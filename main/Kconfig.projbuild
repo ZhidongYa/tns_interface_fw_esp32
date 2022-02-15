@@ -1,0 +1,86 @@
+menu " TCP or UDP"
+
+choice SERVER_CLIENT_ENABLE
+    prompt "Work with SERVER or CLIENT" 
+    default CLIENT_ENABLE
+config CLIENT_ENABLE
+        bool "CLIENT is enable"
+        help
+            Select this to set the board work with client
+config SERVER_ENABLE
+        bool "SERVER is enable"
+        help
+            Select this to set the board work with server, hier it isn't used.
+endchoice
+            
+choice TCP_UDP_CLIENT_ENABLE
+    prompt "Work with TCP or UDP" 
+    default TCP_CLIENT_ENABLE
+    depends on CLIENT_ENABLE
+config TCP_CLIENT_ENABLE
+    bool "Tcp_client is enable"
+    help
+        Select this to set the board work with Tcp_client
+config UDP_CLIENT_ENABLE
+    bool "Udp_client is enable"
+    help
+        Select this to set the board work with Udp_client
+
+endchoice  
+        
+config EXAMPLE_PORT
+    int "Port"
+    range 0 65535
+    default 3333
+    help
+        Local port the example server will listen on.
+
+choice EXAMPLE_IP_MODE
+    prompt "IP Version"
+    depends on EXAMPLE_SOCKET_IP_INPUT_STRING
+    help
+        Example can use either IPV4 or IPV6.
+        
+    config EXAMPLE_IPV4
+    bool "IPV4"
+        
+    config EXAMPLE_IPV6
+    bool "IPV6"
+        
+endchoice
+        
+config EXAMPLE_IPV4_ADDR
+    string "IPV4 Address"
+    default "192.168.0.100"
+    depends on EXAMPLE_IPV4
+    help
+    The example will connect to this IPV4 address.
+        
+config EXAMPLE_IPV6_ADDR
+    string "IPV6 Address"
+    default "FE80::30AD:E57B:C212:68AD"
+    depends on EXAMPLE_IPV6
+    help
+        he example will connect to this IPV6 address.
+        
+
+        
+choice EXAMPLE_SOCKET_IP_INPUT
+            prompt "Socket example source"
+            default EXAMPLE_SOCKET_IP_INPUT_STRING
+            depends on CLIENT_ENABLE
+            help
+                Selects the input source of the IP used in the example.
+        
+            config EXAMPLE_SOCKET_IP_INPUT_STRING
+                bool "From string"
+        
+            config EXAMPLE_SOCKET_IP_INPUT_STDIN
+                bool "From stdin"
+endchoice
+
+
+
+
+
+endmenu

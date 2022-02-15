@@ -1,0 +1,19 @@
+{
+    "C_Cpp.intelliSenseEngineFallback": "Disabled",
+    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
+    "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.dimInactiveRegions": false,
+    "files.associations": {
+        "esp_sensor.h": "c",
+        "olimex_lan8710.h": "c",
+        "esp_log.h": "c",
+        "sdkconfig.h": "c",
+        "olimex_ethernet.h": "c",
+        "sha1.h": "c",
+        "timer.h": "c",
+        "semphr.h": "c",
+        "esp_err.h": "c"
+    },
+    "C_Cpp.configurationWarnings": "Disabled",
+    "editor.tabCompletion": "on"
+}

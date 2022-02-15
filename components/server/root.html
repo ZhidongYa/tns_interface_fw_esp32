@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ESP32 Server</title>
+    <link rel='icon' href='ipr.ico' type=‘image/x-ico’ />
+    <link type="text/css" href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <h1>Hello World!</h1>
+	<p id="output"></p>
+	<table>
+		<thead>
+			<th align= "left" colspan="13">Sensor Config Table</th>
+		</thead>
+		<tbody id = "tableReadConfig">
+			<tr>
+				<th class = "table-column-name">Device Addr</th>
+				<th class = "table-header">Ele(0x42)</th>
+				<th class = "table-header">Ele(0x43)</th>
+				<th class = "table-header">Ele(0x44)</th>
+				<th class = "table-header">Ele(0x45)</th>
+				<th class = "table-header">Ele(0x46)</th>
+				<th class = "table-header">Ele(0x47)</th>
+				<th class = "table-header">Ele(0x48)</th>
+				<th class = "table-header">Ele(0x49))</th>
+				<th class = "table-header">Ele(0x4A))</th>
+				<th class = "table-header">Ele(0x4B)</th>
+				<th class = "table-header">Not(0x4C)</th>
+				<th class = "table-header">Sig(0x4D)</th>
+				<th class = "table-header">Mea(0x4E)</th>
+				<th class = "table-header">Fre(0x4F)</th>
+				<th class = "table-header">Fla(0x50)</th>
+			</tr>
+		</tbody>
+	</table>
+	<br />
+	<table>
+		<tbody id = "tableSetConfig">
+			<tr>
+				<th class = "table-column-name">Device Addr</th>
+				<th class = "table-header">Ele(0x42)</th>
+				<th class = "table-header">Ele(0x43)</th>
+				<th class = "table-header">Ele(0x44)</th>
+				<th class = "table-header">Ele(0x45)</th>
+				<th class = "table-header">Ele(0x46)</th>
+				<th class = "table-header">Ele(0x47)</th>
+				<th class = "table-header">Ele(0x48)</th>
+				<th class = "table-header">Ele(0x49))</th>
+				<th class = "table-header">Ele(0x4A))</th>
+				<th class = "table-header">Ele(0x4B)</th>
+				<th class = "table-header">Not(0x4C)</th>
+				<th class = "table-header">Sig(0x4D)</th>
+				<th class = "table-header">Mea(0x4E)</th>
+				<th class = "table-header">Fre(0x4F)</th>
+				<th class = "table-header">Fla(0x50)</th>
+			</tr>
+			<tr>
+				<td><select id="selectDev" class = "table-input" onchange = "selectDevOnChange(this)"></select></td>
+				<td><input class="table-input" type="text" value = "1"></td>
+				<td><input class="table-input" type="text" value = "3"></td>
+				<td><input class="table-input" type="text" value = "0"></td>
+				<td><input class="table-input" type="text" value = "0"></td>
+				<td><input class="table-input" type="text" value = "0"></td>
+				<td><input class="table-input" type="text" value = "0"></td>
+				<td><input class="table-input" type="text" value = "0"></td>
+				<td><input class="table-input" type="text" value = "0"></td>
+				<td><input class="table-input" type="text" value = "0"></td>
+				<td><input class="table-input" type="text" value = "0"></td>
+				<td><input class="table-input" type="text" value = "0"></td>
+				<td><input class="table-input" type="text" value = "18"></td>
+				<td><input class="table-input" type="text" value = "152"></td>
+				<td><input class="table-input" type="text" value = "7"></td>
+				<td><input class="table-input" type="text" value = "162"></td>
+			</tr>
+		</tbody>	
+	</table>
+	
+	<div class = "buttondiv">
+		<button id="readConfig">Read Configuration</button>
+		<button id="writeConfig">write Configuration</button>
+		<button id="resetAll">Reset All Devices</button>
+		<button id="saveStream" style = "float:right;">Save</button>
+		<button id="stopStream" style = "float:right;">Stop</button>
+		<button id="getStream" style = "float:right;">Start</button>
+		<select id="selectDev_show" style = "float:right;" onchange = "selectDevShowOnChange(this)"></select>
+	</div>
+
+	<div id = "chartsParent">
+	</div>
+	
+	<script type="text/javascript" src="echarts.min.js"></script>
+    <script type="text/javascript" src="mychart.js"></script>
+	<script type="text/javascript" src="websocket.js"></script>
+	<script type = "text/javascript">
+		document.getElementById('readConfig').addEventListener('click', function(){
+			readConfig();
+		});
+		document.getElementById('writeConfig').addEventListener('click', function(){
+			writeConfig();
+		});
+		document.getElementById('resetAll').addEventListener('click', function(){
+			resetAllDevices();
+		});
+		document.getElementById('getStream').addEventListener('click', function(){
+			getStart();
+		});
+		document.getElementById('stopStream').addEventListener('click', function(){
+			stopStream();
+		});
+		document.getElementById('saveStream').addEventListener('click', function(){
+			saveData();
+		});
+</script>
+</body>
+
+</html>
