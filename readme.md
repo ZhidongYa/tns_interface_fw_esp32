@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is built based on ESP-IDF (Espressif Lot Development Framework) which is provided by the the company *ESPRESSIF*. In this project we use GUN Make and Cmake to manage our files, so you can download the source code and compile this project easily with your PC(running Windows, Linux or Mac OS).
+This project is built based on ESP-IDF (Espressif Lot Development Framework) which is provided by the the company *ESPRESSIF*. In this project we use GUN Make and Cmake to manage our files, so you can download the source code and compile this project easily with your PC(running Windows, Linux or Mac OS). Two protocol to transmit sensor data, one is Websocket , another one is Tcp or Udp, ESP board is treated as client, Server is written with python.
 
 ## Contents
 
@@ -38,9 +38,11 @@ If the previous steps have been done correctly, the following menu appears:
 
 ![menu.png](https://gitlab.ipr.kit.edu/alagi/tns_interface_fw_esp32/raw/master/pic/menu.png)
 
+
 In this project, I added three special menu options, 
 
-- Establishing WiFi or Ethernet Connection `(~/main/Kconfig.projbuild)`
+- Establishing TCP or UDP protocol  `(~/main/Kconfig.projbuild)`
+- Establishing WiFi or Ethernet Connection `(~/components/connect/Kconfig.projbuild)`
 - Sensors Configuration `(~/components/sensor/Kconfig.projbuild)`
 - WebSocket Server `(~/components/websocket/Kconfig.projbuild)`
 
@@ -48,11 +50,10 @@ the other options are provided by ESP-IDF and have little to do with this projec
 
 1. In the *Establishing WiFi or Ethernet Connection* option, you can choose how to connect the ESP32 with your computer. This submenu looks like:
 
-![EhternetMenu.png](https://gitlab.ipr.kit.edu/alagi/tns_interface_fw_esp32/raw/master/pic/EhternetMenu.png)
+![ethernet_or_wifi_connection.png](https://gitlab.ipr.kit.edu/alagi/tns_interface_fw_esp32/raw/master/pic/ethernet_or_wifi_connection.png)
 
- **Note:** If you want to connect your board with your computer via a cable, you have to choose the working state of your ESP32 board. It can work with a static IP address(default) or with a dynamic IP address. But no matter  what state it works, you must make sure that your computer is working at the same local network (normally you have to  configure the IP address of your computer). The WiFi options are similar to this.
+ **Note:** If you want to connect your board with your computer via a cable, you have to choose the working state of your ESP32 board. It can't work with a static IP address, only with a dynamic IP address. But no matter  what state it works, you must make sure that your computer is working at the same local network (normally you have to  configure the IP address of your computer). The WiFi options are similar to this.
 
-![WiFiMenu.png](https://gitlab.ipr.kit.edu/alagi/tns_interface_fw_esp32/raw/master/pic/WiFiMenu.png)
 
 2. In the *Sensors Configuration* option you can set all sensor related information:
 
@@ -100,6 +101,10 @@ This command launches the [IDF Monitor](https://docs.espressif.com/projects/esp-
 
 You can get some debug information from the above window, To exit IDF monitor use the shortcut `Ctrl+]`.
 
+#### python server
+
+![python_server.png](https://gitlab.ipr.kit.edu/alagi/tns_interface_fw_esp32/raw/master/pic/python_server.png)
+
 #### Webserver
 
 Open a web browser (chrome is recommended, other browsers have note been tested) and type the IP address of your ESP board in the URL bar, you can get  a web page that looks like:
@@ -111,5 +116,6 @@ Open a web browser (chrome is recommended, other browsers have note been tested)
 # Used Hardware
 
 ![used_hardware](./pic/sina_gripper_interface_esp32_lpc2549_labelled.jpg)
+
 
 "# ESP32-TCP-und-UDP" 
