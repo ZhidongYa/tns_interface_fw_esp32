@@ -4,6 +4,8 @@
 
 This project is built based on ESP-IDF (Espressif Lot Development Framework) which is provided by the the company *ESPRESSIF*. In this project we use GUN Make and Cmake to manage our files, so you can download the source code and compile this project easily with your PC(running Windows, Linux or Mac OS). Two protocol to transmit sensor data, one is Websocket , another one is Tcp or Udp, ESP board is treated as client, Server is written with python.
 
+![process_of_the_projec.png](https://gitlab.ipr.kit.edu/alagi/tns_interface_fw_esp32/raw/master/pic/process_of_the_projec.png)
+
 ## Contents
 
 - Set up the environment
