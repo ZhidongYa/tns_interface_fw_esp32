@@ -65,15 +65,12 @@ extern uint8_t SENSOR_CONFIGS_LENGTH;
 /**
  * transfer char configrations to a char array, str is char configrations, ch is separator, args is the array, size is the size of array
  */
-void split(char *str,const char *ch,char ***args,int *size)
- {
+void split(char *str,const char *ch,char ***args,int *size){
  	int i=0,word=0,sum=0;
- 	for(;str[i]!='\0';i++)
- 	{
+ 	for(;str[i]!='\0';i++){
  		if(str[i]==ch[0])
  		word=0;
- 		else if(word==0)
- 		{
+ 		else if(word==0){
  			word=1;
  			sum++;
 		 }
@@ -85,8 +82,7 @@ void split(char *str,const char *ch,char ***args,int *size)
 	 char *s;
 	 s=(char*)strtok(str,ch);
 	 i=0;
-	 while(s!=NULL)
-	 {
+	 while(s!=NULL){
 	 	(*args)[i]=s;
 	 	s=(char*)strtok(NULL,ch);
 	 	i++;
